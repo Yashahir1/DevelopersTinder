@@ -38,7 +38,7 @@ userRouter.get("/user/connections", userAuth, async (req, res) => {
         ],
       })
       .populate("fromUserId", USER_SAFE_DATA)
-      .populate("toUserId", USER_SAFE_DATA)
+      .populate("toUserId", USER_SAFE_DATA) 
       .lean();
 
       const data = connectionRequests.map((row)=> {
