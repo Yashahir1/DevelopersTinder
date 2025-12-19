@@ -79,7 +79,7 @@ userRouter.get("/user/feed", userAuth, async (req, res) => {
       ]
     }).select(USER_SAFE_DATA).skip((page-1)*limit).limit(limit);
 
-    res.send(users).s;
+    res.json({data: users});
   } catch (err) {
     res.status(400).send("Error while fetching feed: " + err.message);
   }
