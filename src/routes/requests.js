@@ -80,7 +80,6 @@ requestsRouter.post(
         toUserId: loggedInUser._id,
         status: "interested",
       });
-      
 
       if (!connectionRequest) {
         return res
@@ -90,8 +89,10 @@ requestsRouter.post(
 
       connectionRequest.status = status;
       const data = await connectionRequest.save();
-      res.json({ message: "Connection request " + status + " successfully", data });
-
+      res.json({
+        message: "Connection request " + status + " successfully",
+        data,
+      });
     } catch (err) {
       return res
         .status(400)

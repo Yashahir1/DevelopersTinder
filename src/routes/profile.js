@@ -41,18 +41,18 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
 profileRouter.patch("/profile/forgotPassword", userAuth, async (req, res) => {
   try {
     const user = req.user;
-    const {oldPassword, newPassword } = req.body;
+    const { oldPassword, newPassword } = req.body;
 
     if (!oldPassword && !newPassword) {
       return res.status(400).send("New password is required");
     }
-    
+
     const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
     if (!isOldPasswordValid) {
       throw new Error("Old Password is incorrect");
     }
 
-    if(oldPassword === newPassword) {
+    if (oldPassword === newPassword) {
       throw new Error("New Password must be different from Old Password");
     }
 
@@ -69,6 +69,5 @@ profileRouter.patch("/profile/forgotPassword", userAuth, async (req, res) => {
     res.status(400).send("Error while resetting password : " + err.message);
   }
 });
-
 
 module.exports = profileRouter;
