@@ -48,7 +48,7 @@ const userSchema = new mongoose.Schema(
     gender: {
       type: String,
       enum :{
-        value:["male","female", "others"],
+        values:["male","female", "others"],
         message:`{VALUE} is not valid gender type.`
       },
       validate(value) {
